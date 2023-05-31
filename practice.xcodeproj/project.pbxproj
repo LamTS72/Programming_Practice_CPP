@@ -8,23 +8,36 @@
 
 /* Begin PBXBuildFile section */
 		AAD878322A248A62000BE716 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAD878312A248A62000BE716 /* main.cpp */; };
+		AAD8783D2A268EC9000BE716 /* text.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = AAD878392A268D75000BE716 /* text.txt */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		AAD8782C2A248A61000BE716 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			dstPath = usr/share/man/man1;
+			dstSubfolderSpec = 16;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 1;
+		};
+		AAD8783C2A268EC1000BE716 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				AAD8783D2A268EC9000BE716 /* text.txt in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		AAD8782E2A248A61000BE716 /* practice */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = practice; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD878312A248A62000BE716 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		AAD878392A268D75000BE716 /* text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = text.txt; sourceTree = "<group>"; };
+		AAD8783E2A2690FC000BE716 /* out.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = out.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +71,8 @@
 			isa = PBXGroup;
 			children = (
 				AAD878312A248A62000BE716 /* main.cpp */,
+				AAD8783E2A2690FC000BE716 /* out.txt */,
+				AAD878392A268D75000BE716 /* text.txt */,
 			);
 			path = practice;
 			sourceTree = "<group>";
@@ -72,6 +87,7 @@
 				AAD8782A2A248A61000BE716 /* Sources */,
 				AAD8782B2A248A61000BE716 /* Frameworks */,
 				AAD8782C2A248A61000BE716 /* CopyFiles */,
+				AAD8783C2A268EC1000BE716 /* CopyFiles */,
 			);
 			buildRules = (
 			);
