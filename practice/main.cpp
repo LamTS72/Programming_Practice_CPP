@@ -516,8 +516,366 @@ void addElement(int*& arr, int n, int val, int index) {
     delete[] arr;
     arr = newArr;
 }
-int main(int argc, const char * argv[]) {
-    cout << readArray();
+/* ============= CLASS OOP ===========*/
+class ClockType
+{
+public:
+    ClockType(int, int, int);
+    ClockType();
+    void printTime() const;
+    void setTime(int, int, int);
+    void getTime(int&, int&, int&) const;
+    void incrementSeconds();
+    void incrementMinutes();
+    void incrementHours();
+    bool equalTime(const ClockType&) const;
+private:
+    int hr;
+    int min;
+    int sec;
+};
+
+void ClockType::printTime() const
+{
+   if (hr < 10)
+      cout << "0";
+   cout << hr << ":";
+   if (min < 10)
+      cout << "0";
+   cout << min << ":";
+   if (sec < 10)
+      cout << "0";
+   cout << sec;
+}
+
+// TODO
+ClockType::ClockType(int h, int m, int s){
+    if(0 <= h && h <= 24){
+        this->hr = h;
+    }
+    else{
+        this->hr = 0;
+    }
+    if(0 <= m && m <= 60){
+        this->min = m;
+    }
+    else{
+        this->min = 0;
+    }
+    if(0 <= s && s <= 60){
+        this->sec = s;
+    }
+    else{
+        this->sec = 0;
+    }
+}
+ClockType::ClockType(){
+    this->hr = 0;
+    this->min = 0;
+    this->sec = 0;
+}
+void ClockType::setTime(int h , int m, int s){
+    if(0 <= h && h <= 24){
+        this->hr = h;
+    }
+    else{
+        this->hr = 0;
+    }
+    if(0 <= m && m <= 60){
+        this->min = m;
+    }
+    else{
+        this->min = 0;
+    }
+    if(0 <= s && s <= 60){
+        this->sec = s;
+    }
+    else{
+        this->sec = 0;
+    }
+}
+void ClockType::getTime(int &h, int& m, int& s) const{
+    h = this->hr;
+    m = this->min;
+    s = this->sec;
+}
+void ClockType::incrementHours(){
+    if(this->hr < 24){
+        this->hr++;
+        if(this->hr == 24){
+            this->hr = 0;
+        }
+    }
+}
+void ClockType::incrementMinutes(){
+    if(this->min < 60){
+        this->min++;
+        if(this->min == 60){
+            this->min = 0;
+            incrementHours();
+        }
+    }
+}
+void ClockType::incrementSeconds(){
+    if(this->sec < 60){
+        this->sec++;
+        if(this->sec == 60){
+            this->sec = 0;
+            incrementMinutes();
+        }
+    }
+}
+bool ClockType::equalTime(const ClockType& other) const{
+    if(other.hr != this->hr) return false;
+    if(other.min != this->min) return false;
+    if(other.sec != this->sec) return false;
+    return true;
+}
+
+class Course {
+private:
+    int ID;
+    int numOfStudent;
+    int numOfTeacher;
+    int numOfTA;
+public:
+    void getinfo();
+    void disinfo();
+};
+
+void Course::getinfo() {
+   cout << "ID: ";
+   cin >> ID;
+   cout << "Number of Students: ";
+   cin >> numOfStudent;
+   cout << "Number of Teachers: ";
+   cin >> numOfTeacher;
+   cout << "Number of TAs: ";
+   cin >> numOfTA;
+}
+
+void Course::disinfo()
+{
+   cout<<endl;
+   cout<< "CourseID = "<< ID << endl;
+   cout<< "Number of student = " << numOfStudent << endl;
+   cout<< "Number of teacher = " << numOfTeacher << endl;
+   cout<< "Number of TA = " << numOfTA<< endl;
+}
+
+class Room{
+private:
+    double length;
+    double breadth;
+    double height;
+public:
+    Room(double length, double breadth, double height);
+    double calculateArea();
+    double calculateVolume();
+};
+Room::Room(double length, double breadth, double height){
+    this->length = length;
+    this->breadth = breadth;
+    this->height = height;
+}
+double Room::calculateArea(){
+    return this->length * this->breadth;
+}
+double Room::calculateVolume(){
+    return this->length * this->breadth * this->height;
+}
+
+template <typename T>
+class Array {
+public:
+    Array(int size, T initValue);
+    ~Array();
+
+    void setAt(int idx, const T & value);
+    T getAt(int idx);
+    T& operator[](int idx);
+    Array(const Array<T>& other);
+    Array<T>& operator=(const Array<T> & other);
+    void print();
+
+private:
+    int size;
+    T * p;
+};
+
+template<typename T>
+void Array<T>::print() {
+    for (int i = 0; i < this->size; ++i) {
+        cout << (i > 0 ? " " : "")
+            << this->p[i];
+    }
     cout << endl;
+}
+
+// TODO
+template <typename T>
+Array<T>::Array(int size, T initValue) {
+    this->size = size;
+    p = new T[size];
+    for (int i = 0; i < size; i++) {
+        p[i] = initValue;
+    }
+}
+template <typename T>
+Array<T>::~Array() {
+    delete[] p;
+}
+template<typename T>
+T& Array<T>::operator[](int idx){
+    if(idx < 0 || idx >= size){
+        throw -1;
+    }
+    return p[idx];
+}
+//template<typename T>
+//Array<T>::Array(const Array<T>& other){
+//    this->size = other.size;
+//    p = new T[this->size];
+//    for(int i = 0; i < this->size; i++){
+//        p[i] = other.p[i];
+//    }
+//}
+template <typename T>
+Array<T>::Array(const Array<T>& other){
+    this->size = other.size;
+    p = new T[this->size];
+    for(int i = 0; i < this->size; i++){
+        p[i] = other.p[i];
+    }
+    cout << "Call copy constructor"<<endl;
+}
+template<typename T>
+Array<T>& Array<T>::operator=(const Array<T> & other){
+    if(this != &other){
+        delete p;
+        this->size = other.size;
+        p = new T[this->size];
+        for(int i = 0; i < this->size; i++){
+            p[i] = other.p[i];
+        }
+    }
+    cout<<"Call assignment operator"<<endl;
+    return *this;
+}
+
+
+class Integer{
+private:
+    int val;
+public:
+    Integer(int val);
+    void setValue(int value);
+    int getValue();
+    Integer(Integer *val);
+    Integer operator+(const Integer&) const;
+    Integer operator+(int val) const;
+    void print();
+};
+Integer::Integer(int val){
+    this->val = val;
+}
+void Integer::setValue(int value){
+    this->val = value;
+}
+int Integer::getValue(){
+    return this->val;
+}
+Integer::Integer(Integer *other){
+    this->val = other->val;
+}
+Integer Integer::operator+(const Integer& other) const{
+    return Integer(other.val + this->val);
+}
+Integer Integer::operator+(int val) const{
+    return Integer(this->val + val);
+}
+void Integer::print() {
+    cout << this->val << endl;
+}
+
+class Book {
+    char* name;
+public:
+    Book(const char*);
+    ~Book();
+    
+    void display();
+    char* getName();
+};
+#include <string.h>
+Book::Book(const char* input){
+    name = new char[strlen(input)];
+    for(int i = 0; i < strlen(input); i++){
+        name[i] = input[i];
+    }
+}
+Book::~Book(){
+    delete[] name;
+}
+void Book::display() {
+    cout << "Book: " << this->name << endl;
+}
+
+char* Book::getName() {
+    return this->name;
+}
+
+
+template < class T >
+class Cell {
+       protected:
+           T infor;
+       public:
+           void set(T x){ infor = x; }
+           T get() { return infor; }
+   };
+enum Color {White, Yellow, Black, Red, Blue};
+
+template < class T >
+class ColoredCell:public Cell<T>{
+protected:
+    Color color;
+public:
+    void setColor(Color );
+    Color getColor();
+    T* get();
+};
+
+template < class T >
+void ColoredCell<T>::setColor(Color c){
+    this->color = c;
+}
+
+template < class T >
+Color ColoredCell<T>::getColor(){
+    return this->color;
+}
+template < class T >
+T* ColoredCell<T>::get(){
+    if(this->color != White){
+        return &(this->infor);
+    }
+    else{
+        return NULL;
+    }
+}
+
+int main(int argc, const char * argv[]) {
+    int x, y, z;
+    cin >> x >> y >> z;
+    Integer a(x);
+    Integer b(y);
+    Integer* t = new Integer(z);
+    Integer c(t);
+    
+    a.print(); b.print();
+    (a + b + c + 4).print();
+    
+    delete t;
     return 0;
 }
